@@ -82,8 +82,8 @@ class AuthController extends Controller
 
             // Create redirect response with cookies
             return redirect()->to(env('FRONTEND_URL'))
-                ->cookie('userToken', $token, 525600, null, null, false, false) // 1 year (525600 minutes), HTTP only false to allow JS access
-                ->cookie('user', $userData, 525600, null, null, false, false);
+                ->cookie('userToken', $token, 525600, null, null, false, false); // 1 year (525600 minutes), HTTP only false to allow JS access
+            // ->cookie('user', $userData, 525600, null, null, false, false);
         } catch (\Exception $e) {
             // Redirect to signup with error message
             return redirect()->to(env('FRONTEND_URL') . '/signup?error=google_auth_failed');
@@ -91,6 +91,11 @@ class AuthController extends Controller
     }
 
 
+    /**
+     * Forgot password
+     * @param Request $request
+     * Rate limit by IP
+     */
     public function forgotPassword(Request $request)
     {
         // Rate limit by IP
@@ -143,6 +148,11 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Reset password
+     * @param Request $request
+     * Rate limit by IP
+     */
     public function resetPassword(Request $request)
     {
         // Rate limit by IP

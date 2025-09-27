@@ -88,8 +88,20 @@ class RegisterController extends Controller
             if ($validator->fails()) {
                 return $this->error($validator->errors()->first(), 422);
             }
+
+            if ($user->tokens->count() > 0) {
+                $user->tokens()->delete();
+            }
+
+            // Create a new token
+            $token = $user->createToken('auth_token')->plainTextToken;
+
             DB::commit();
-            return $this->success('تم تسجيل الدخول بنجاح');
+            return response()->json([
+                'status' => 'success',
+                'message' => 'تم تسجيل الدخول بنجاح',
+                'access_token' => $token,
+            ], 200);
 
         } catch (\Exception $e) {
             DB::rollBack();
