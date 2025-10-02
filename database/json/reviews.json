@@ -1,0 +1,302 @@
+[
+  {
+    "id": 1,
+    "user_id": 1,
+    "property_id": 1,
+    "rating": 5,
+    "comment": "العقار ممتاز، موقع رائع وتشطيب عالي، بس قليل الضجيج في الشارع.",
+    "likes": 12,
+    "created_at": "2025-09-05T10:00:00Z",
+    "updated_at": "2025-09-05T10:00:00Z"
+  },
+  {
+    "id": 2,
+    "user_id": 2,
+    "property_id": 1,
+    "rating": 5,
+    "comment": "شقة أكثر من رائعة، كل حاجة قريبة والخدمات ممتازة.",
+    "likes": 20,
+    "created_at": "2025-09-05T10:15:00Z",
+    "updated_at": "2025-09-05T10:15:00Z"
+  },
+  {
+    "id": 3,
+    "user_id": 3,
+    "property_id": 1,
+    "rating": 4,
+    "comment": "الشقة كويسة لكن في بعض المشاكل في السباكة.",
+    "likes": 7,
+    "created_at": "2025-09-05T10:30:00Z",
+    "updated_at": "2025-09-05T10:30:00Z"
+  },
+  {
+    "id": 4,
+    "user_id": 4,
+    "property_id": 2,
+    "rating": 4,
+    "comment": "المكان هادي وجميل، لكن السعر مبالغ فيه.",
+    "likes": 9,
+    "created_at": "2025-09-05T10:45:00Z",
+    "updated_at": "2025-09-05T10:45:00Z"
+  },
+  {
+    "id": 5,
+    "user_id": 5,
+    "property_id": 2,
+    "rating": 3,
+    "comment": "الموقع مش قد كده، الخدمات ضعيفة.",
+    "likes": 3,
+    "created_at": "2025-09-05T11:00:00Z",
+    "updated_at": "2025-09-05T11:00:00Z"
+  },
+  {
+    "id": 6,
+    "user_id": 6,
+    "property_id": 2,
+    "rating": 5,
+    "comment": "تشطيب رائع جدًا والخدمات ممتازة جدًا.",
+    "likes": 15,
+    "created_at": "2025-09-05T11:15:00Z",
+    "updated_at": "2025-09-05T11:15:00Z"
+  },
+  {
+    "id": 7,
+    "user_id": 7,
+    "property_id": 3,
+    "rating": 4,
+    "comment": "الشقة واسعة، بس المواصلات بعيدة شوية.",
+    "likes": 6,
+    "created_at": "2025-09-05T11:30:00Z",
+    "updated_at": "2025-09-05T11:30:00Z"
+  },
+  {
+    "id": 8,
+    "user_id": 8,
+    "property_id": 3,
+    "rating": 5,
+    "comment": "المكان تحفة والاطلالة جميلة جدًا.",
+    "likes": 18,
+    "created_at": "2025-09-05T11:45:00Z",
+    "updated_at": "2025-09-05T11:45:00Z"
+  },
+  {
+    "id": 9,
+    "user_id": 9,
+    "property_id": 4,
+    "rating": 3,
+    "comment": "المكان متوسط، فيه إزعاج من الشارع الرئيسي.",
+    "likes": 5,
+    "created_at": "2025-09-05T12:00:00Z",
+    "updated_at": "2025-09-05T12:00:00Z"
+  },
+  {
+    "id": 10,
+    "user_id": 10,
+    "property_id": 4,
+    "rating": 5,
+    "comment": "شقة ممتازة جدًا والخدمات كاملة.",
+    "likes": 22,
+    "created_at": "2025-09-05T12:15:00Z",
+    "updated_at": "2025-09-05T12:15:00Z"
+  },
+  {
+    "id": 11,
+    "user_id": 11,
+    "property_id": 5,
+    "rating": 4,
+    "comment": "تشطيب جيد والمكان قريب من الخدمات.",
+    "likes": 11,
+    "created_at": "2025-09-05T12:30:00Z",
+    "updated_at": "2025-09-05T12:30:00Z"
+  },
+  {
+    "id": 12,
+    "user_id": 12,
+    "property_id": 6,
+    "rating": 4,
+    "comment": "المكان كويس، بس محتاج شوية صيانة.",
+    "likes": 8,
+    "created_at": "2025-09-05T12:45:00Z",
+    "updated_at": "2025-09-05T12:45:00Z"
+  },
+  {
+    "id": 13,
+    "user_id": 13,
+    "property_id": 13,
+    "rating": 3,
+    "comment": "المكان بعيد عن وسط المدينة وصعب توصل له.",
+    "likes": 4,
+    "created_at": "2025-09-05T13:00:00Z",
+    "updated_at": "2025-09-05T13:00:00Z"
+  },
+  {
+    "id": 14,
+    "user_id": 14,
+    "property_id": 8,
+    "rating": 5,
+    "comment": "شقة جميلة جدًا ومريحة للعائلة.",
+    "likes": 19,
+    "created_at": "2025-09-05T13:15:00Z",
+    "updated_at": "2025-09-05T13:15:00Z"
+  },
+  {
+    "id": 15,
+    "user_id": 15,
+    "property_id": 8,
+    "rating": 3,
+    "comment": "الشقة صغيرة والسعر مش مناسب.",
+    "likes": 5,
+    "created_at": "2025-09-05T13:30:00Z",
+    "updated_at": "2025-09-05T13:30:00Z"
+  },
+  {
+    "id": 16,
+    "user_id": 16,
+    "property_id": 9,
+    "rating": 5,
+    "comment": "المكان تحفة وتشطيب راقي جدًا.",
+    "likes": 21,
+    "created_at": "2025-09-05T13:45:00Z",
+    "updated_at": "2025-09-05T13:45:00Z"
+  },
+  {
+    "id": 17,
+    "user_id": 17,
+    "property_id": 9,
+    "rating": 4,
+    "comment": "في بعض المشاكل في الكهرباء، لكن بشكل عام جيد.",
+    "likes": 7,
+    "created_at": "2025-09-05T14:00:00Z",
+    "updated_at": "2025-09-05T14:00:00Z"
+  },
+  {
+    "id": 18,
+    "user_id": 18,
+    "property_id": 18,
+    "rating": 4,
+    "comment": "المكان قريب من كل الخدمات والمول، تجربة ممتازة.",
+    "likes": 14,
+    "created_at": "2025-09-05T14:15:00Z",
+    "updated_at": "2025-09-05T14:15:00Z"
+  },
+  {
+    "id": 19,
+    "user_id": 19,
+    "property_id": 11,
+    "rating": 3,
+    "comment": "الشقة ضيقة شوية ومش مريحة.",
+    "likes": 3,
+    "created_at": "2025-09-05T14:30:00Z",
+    "updated_at": "2025-09-05T14:30:00Z"
+  },
+  {
+    "id": 20,
+    "user_id": 20,
+    "property_id": 11,
+    "rating": 5,
+    "comment": "تجربة رائعة بكل المقاييس، أنصح بيها بشدة.",
+    "likes": 25,
+    "created_at": "2025-09-05T14:45:00Z",
+    "updated_at": "2025-09-05T14:45:00Z"
+  },
+  {
+    "id": 21,
+    "user_id": 21,
+    "property_id": 12,
+    "rating": 4,
+    "comment": "الشقة حلوة بس مفيش مواقف سيارات كافية.",
+    "likes": 10,
+    "created_at": "2025-09-05T15:00:00Z",
+    "updated_at": "2025-09-05T15:00:00Z"
+  },
+  {
+    "id": 22,
+    "user_id": 22,
+    "property_id": 13,
+    "rating": 5,
+    "comment": "المكان جميل جدًا والاطلالة رائعة.",
+    "likes": 16,
+    "created_at": "2025-09-05T15:15:00Z",
+    "updated_at": "2025-09-05T15:15:00Z"
+  },
+  {
+    "id": 23,
+    "user_id": 23,
+    "property_id": 13,
+    "rating": 3,
+    "comment": "المكان بعيد شوية عن المواصلات.",
+    "likes": 6,
+    "created_at": "2025-09-05T15:30:00Z",
+    "updated_at": "2025-09-05T15:30:00Z"
+  },
+  {
+    "id": 24,
+    "user_id": 24,
+    "property_id": 15,
+    "rating": 5,
+    "comment": "شقة تحفة ومجهزة بكل حاجة، أنصح بيها.",
+    "likes": 24,
+    "created_at": "2025-09-05T15:45:00Z",
+    "updated_at": "2025-09-05T15:45:00Z"
+  },
+  {
+    "id": 25,
+    "user_id": 25,
+    "property_id": 18,
+    "rating": 4,
+    "comment": "المكان كويس لكن محتاج شوية تحسين.",
+    "likes": 9,
+    "created_at": "2025-09-05T16:00:00Z",
+    "updated_at": "2025-09-05T16:00:00Z"
+  },
+  {
+    "id": 26,
+    "user_id": 26,
+    "property_id": 19,
+    "rating": 4,
+    "comment": "المكان مريح والاطلالة جميلة.",
+    "likes": 13,
+    "created_at": "2025-09-05T16:15:00Z",
+    "updated_at": "2025-09-05T16:15:00Z"
+  },
+  {
+    "id": 27,
+    "user_id": 27,
+    "property_id": 19,
+    "rating": 3,
+    "comment": "المكان مش زي الصور والسعر عالي.",
+    "likes": 4,
+    "created_at": "2025-09-05T16:30:00Z",
+    "updated_at": "2025-09-05T16:30:00Z"
+  },
+  {
+    "id": 28,
+    "user_id": 28,
+    "property_id": 19,
+    "rating": 5,
+    "comment": "شقة ممتازة جدًا وأنصح بيها.",
+    "likes": 20,
+    "created_at": "2025-09-05T16:45:00Z",
+    "updated_at": "2025-09-05T16:45:00Z"
+  },
+  {
+    "id": 29,
+    "user_id": 29,
+    "property_id": 20,
+    "rating": 3,
+    "comment": "المكان مقبول لكن فيه ضوضاء بالليل.",
+    "likes": 7,
+    "created_at": "2025-09-05T17:00:00Z",
+    "updated_at": "2025-09-05T17:00:00Z"
+  },
+  {
+    "id": 30,
+    "user_id": 30,
+    "property_id": 20,
+    "rating": 5,
+    "comment": "أفضل شقة جربتها، فعلاً ممتازة.",
+    "likes": 30,
+    "created_at": "2025-09-05T17:15:00Z",
+    "updated_at": "2025-09-05T17:15:00Z"
+  }
+]
