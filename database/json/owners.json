@@ -1,0 +1,272 @@
+[
+  {
+    "id": 1,
+    "name": "أحمد محمد",
+    "phone": "021000000000",
+    "email": "owner1@example.com",
+    "type": "individual",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 2,
+    "name": "فاطمة علي",
+    "phone": "021000000001",
+    "email": "owner2@example.com",
+    "type": "company",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 3,
+    "name": "محمد أحمد",
+    "phone": "021000000002",
+    "email": "owner3@example.com",
+    "type": "individual",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 4,
+    "name": "عائشة حسن",
+    "phone": "021000000003",
+    "email": "owner4@example.com",
+    "type": "company",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 5,
+    "name": "علي خالد",
+    "phone": "021000000004",
+    "email": "owner5@example.com",
+    "type": "individual",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 6,
+    "name": "سارة إبراهيم",
+    "phone": "021000000005",
+    "email": "owner6@example.com",
+    "type": "company",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 7,
+    "name": "خالد عمر",
+    "phone": "021000000006",
+    "email": "owner7@example.com",
+    "type": "individual",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 8,
+    "name": "نورا يوسف",
+    "phone": "021000000007",
+    "email": "owner8@example.com",
+    "type": "company",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 9,
+    "name": "يوسف زيد",
+    "phone": "021000000008",
+    "email": "owner9@example.com",
+    "type": "individual",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 10,
+    "name": "زينب رامي",
+    "phone": "021000000009",
+    "email": "owner10@example.com",
+    "type": "company",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 11,
+    "name": "رامي سامي",
+    "phone": "021000000010",
+    "email": "owner11@example.com",
+    "type": "individual",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 12,
+    "name": "لينا طارق",
+    "phone": "021000000011",
+    "email": "owner12@example.com",
+    "type": "company",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 13,
+    "name": "طارق جمال",
+    "phone": "021000000012",
+    "email": "owner13@example.com",
+    "type": "individual",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 14,
+    "name": "هبة كريم",
+    "phone": "021000000013",
+    "email": "owner14@example.com",
+    "type": "company",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 15,
+    "name": "كريم فادي",
+    "phone": "021000000014",
+    "email": "owner15@example.com",
+    "type": "individual",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 16,
+    "name": "مها غالب",
+    "phone": "021000000015",
+    "email": "owner16@example.com",
+    "type": "company",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 17,
+    "name": "غالب حسام",
+    "phone": "021000000016",
+    "email": "owner17@example.com",
+    "type": "individual",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 18,
+    "name": "رنا إياد",
+    "phone": "021000000017",
+    "email": "owner18@example.com",
+    "type": "company",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 19,
+    "name": "إياد جميل",
+    "phone": "021000000018",
+    "email": "owner19@example.com",
+    "type": "individual",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 20,
+    "name": "ليلى نواف",
+    "phone": "021000000019",
+    "email": "owner20@example.com",
+    "type": "company",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 21,
+    "name": "نواف عادل",
+    "phone": "021000000020",
+    "email": "owner21@example.com",
+    "type": "individual",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 22,
+    "name": "سلمى باسل",
+    "phone": "021000000021",
+    "email": "owner22@example.com",
+    "type": "company",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 23,
+    "name": "باسل تامر",
+    "phone": "021000000022",
+    "email": "owner23@example.com",
+    "type": "individual",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 24,
+    "name": "داليا وائل",
+    "phone": "021000000023",
+    "email": "owner24@example.com",
+    "type": "company",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 25,
+    "name": "وائل زاهر",
+    "phone": "021000000024",
+    "email": "owner25@example.com",
+    "type": "individual",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 26,
+    "name": "نسمة أمير",
+    "phone": "021000000025",
+    "email": "owner26@example.com",
+    "type": "company",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 27,
+    "name": "أمير بدر",
+    "phone": "021000000026",
+    "email": "owner27@example.com",
+    "type": "individual",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 28,
+    "name": "ريم حازم",
+    "phone": "021000000027",
+    "email": "owner28@example.com",
+    "type": "company",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 29,
+    "name": "حازم سعيد",
+    "phone": "021000000028",
+    "email": "owner29@example.com",
+    "type": "individual",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 30,
+    "name": "منى طلال",
+    "phone": "021000000029",
+    "email": "owner30@example.com",
+    "type": "company",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  }
+]

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UserProfileResource;
-use App\Models\Profile;
 use App\Models\User;
-use App\Traits\AuthenticatedUser;
-use App\Traits\HandleResponse;
+use App\Models\Profile;
 use Illuminate\Http\Request;
+use App\Traits\HandleResponse;
+use App\Traits\AuthenticatedUser;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\UserProfileResource;
 
 class UserProfileController extends Controller
 {
@@ -23,7 +23,6 @@ class UserProfileController extends Controller
                 'data' => $user
             ]);
         } catch (\Exception $e) {
-            \Log::error($e->getMessage());
             return $this->error("حدث خطأ في السيرفر");
         }
     }

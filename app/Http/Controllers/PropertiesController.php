@@ -1,0 +1,96 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\CreatePropertiesFiltration;
+use Illuminate\Http\Request;
+use App\Http\Resources\PropertyCollection;
+use App\Models\Properties;
+use App\Traits\HandleResponse;
+use Illuminate\Support\Facades\Cache;
+
+class PropertiesController extends Controller
+{
+    use HandleResponse;
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index(Request $request)
+    {
+        $currentPage = $request->header('page', 1);
+        $cacheKey = 'properties_page_' . $currentPage;
+        try {
+            $query = Properties::query();
+
+            $properties = Cache::rememberForever($cacheKey, function () use ($query, $currentPage) {
+                return $query->with(['location', 'images', 'owner', 'agency'])->paginate(10, ['*'], 'page', $currentPage);
+            });
+
+            return response()->json([
+                'success' => "success",
+                'data' => new PropertyCollection($properties)
+            ], 200);
+        } catch (\Exception $e) {
+            return $this->error("حدث خطأ ما");
+        }
+    }
+
+    /**
+     * Filter properties based on various parameters
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function filterByParams(CreatePropertiesFiltration $request)
+    {
+        try {
+            $query = Properties::query();
+            $validated = $request->validated();
+
+            // Filter by property type
+            if (!empty($validated['type']) && $validated['type'] !== 'all') {
+                $query->where('type', $validated['type']);
+            }
+
+            // Filter by location
+            if (!empty($validated['location'])) {
+                $query->withNormalizedLocation($validated['location']);
+            }
+
+            // Filter by price range
+            if (isset($validated['minPrice'])) {
+                $query->where('price', '>=', $validated['minPrice']);
+            }
+            if (isset($validated['maxPrice'])) {
+                $query->where('price', '<=', $validated['maxPrice']);
+            }
+
+            // Filter by number of bedrooms
+            if (isset($validated['bedrooms'])) {
+                $query->where('bedrooms', $validated['bedrooms']);
+            }
+
+            // Filter by number of bathrooms
+            if (isset($validated['bathrooms'])) {
+                $query->where('bathrooms', $validated['bathrooms']);
+            }
+
+            $properties = $query->with(['location', 'images', 'owner', 'agency'])
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+
+            return response()->json([
+                'success' => true,
+                'data' => new PropertyCollection($properties)
+            ], 200);
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return $this->error($e->validator->errors()->first());
+        } catch (\Exception $e) {
+            return $this->error('حدث خطأ ما');
+        }
+    }
+}

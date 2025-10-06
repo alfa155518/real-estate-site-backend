@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "وكالة عقارات القاهرة",
+    "phone": "0220123456",
+    "website": "https://agency1.com",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 2,
+    "name": "شركة الإسكندرية للعقارات",
+    "phone": "0330123456",
+    "website": "https://agency2.com",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 3,
+    "name": "عقارات الجيزة",
+    "phone": "0230123456",
+    "website": "https://agency3.com",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 4,
+    "name": "وكيل الساحل",
+    "phone": "0470123456",
+    "website": "https://agency4.com",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  },
+  {
+    "id": 5,
+    "name": "عقارات مصر الجديدة",
+    "phone": "0210123456",
+    "website": "https://agency5.com",
+    "created_at": "2025-09-04T10:00:00Z",
+    "updated_at": "2025-09-04T10:00:00Z"
+  }
+]

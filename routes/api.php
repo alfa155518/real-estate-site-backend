@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\UserProfileController;
@@ -41,6 +42,12 @@ Route::middleware(SecurityHeadersMiddleware::class)->group(function () {
     Route::prefix('v1/reviews')->group(function () {
         Route::get('/', [ReviewsController::class, 'allReviews']);
         Route::get('{propertyId}', [ReviewsController::class, 'reviewsByProperty']);
+    });
+
+    //Public Properties
+    Route::prefix('v1/properties')->group(function () {
+        Route::get('/', [PropertiesController::class, 'index']);
+        Route::get('/filter', [PropertiesController::class, 'filterByParams']);
     });
 
     // ============================================
