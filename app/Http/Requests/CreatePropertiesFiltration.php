@@ -33,6 +33,7 @@ class CreatePropertiesFiltration extends FormRequest
     public function messages(): array
     {
         return [
+            'search.required' => 'يجب أن يكون البحث عن اسم عقار',
             'minPrice.required' => 'يجب أن يكون الحد الأدنى للسعر رقماً',
             'maxPrice.required' => 'يجب أن يكون الحد الأقصى للسعر رقماً',
             'bedrooms.required' => 'يجب أن يكون عدد غرف النوم رقماً',
@@ -54,7 +55,6 @@ class CreatePropertiesFiltration extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(
-
             $this->error($validator->errors()->first(), 422)
         );
     }

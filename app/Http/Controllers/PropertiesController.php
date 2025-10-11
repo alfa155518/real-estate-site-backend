@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePropertiesFiltration;
+use App\Http\Resources\PropertyResource;
 use Illuminate\Http\Request;
 use App\Http\Resources\PropertyCollection;
 use App\Models\Properties;
@@ -34,6 +35,7 @@ class PropertiesController extends Controller
                 'data' => new PropertyCollection($properties)
             ], 200);
         } catch (\Exception $e) {
+            \Log::error($e->getMessage());
             return $this->error("حدث خطأ ما");
         }
     }
@@ -49,6 +51,14 @@ class PropertiesController extends Controller
         try {
             $query = Properties::query();
             $validated = $request->validated();
+
+            // filter by search
+            if (isset($validated['search'])) {
+                $searchTerm = trim($validated['search']);
+                if (!empty($searchTerm)) {
+                    $query->whereRaw('LOWER(title) LIKE ?', ['%' . strtolower($searchTerm) . '%']);
+                }
+            }
 
             // Filter by property type
             if (!empty($validated['type']) && $validated['type'] !== 'all') {
@@ -89,6 +99,34 @@ class PropertiesController extends Controller
 
         } catch (\Illuminate\Validation\ValidationException $e) {
             return $this->error($e->validator->errors()->first());
+        } catch (\Exception $e) {
+            return $this->error('حدث خطأ ما');
+        }
+    }
+
+    /**
+     * Get a single property by slug
+     *
+     * @param string $slug
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function singleProperty($slug)
+    {
+        try {
+
+            $property = Properties::where('slug', $slug)->first();
+
+            if (!$property) {
+                return $this->notFound('العقار غير موجود');
+            }
+
+            $property = Cache::rememberForever('property_' . $slug, function () use ($slug) {
+                return Properties::where('slug', $slug)->with(['location', 'images', 'owner', 'agency'])->first();
+            });
+            return response()->json([
+                'status' => 'success',
+                'data' => new PropertyResource($property)
+            ], 200);
         } catch (\Exception $e) {
             return $this->error('حدث خطأ ما');
         }

@@ -47,6 +47,7 @@ Route::middleware(SecurityHeadersMiddleware::class)->group(function () {
     //Public Properties
     Route::prefix('v1/properties')->group(function () {
         Route::get('/', [PropertiesController::class, 'index']);
+        Route::get('/property/{slug}', [PropertiesController::class, 'singleProperty']);
         Route::get('/filter', [PropertiesController::class, 'filterByParams']);
     });
 

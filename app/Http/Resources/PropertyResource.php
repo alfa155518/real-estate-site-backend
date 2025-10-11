@@ -7,6 +7,54 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class PropertyResource extends JsonResource
 {
+
+
+
+    private function toArabicDigits($number): string
+    {
+        if (is_null($number)) {
+            return '';
+        }
+
+        $arabic = [
+            '0' => '٠',
+            '1' => '١',
+            '2' => '٢',
+            '3' => '٣',
+            '4' => '٤',
+            '5' => '٥',
+            '6' => '٦',
+            '7' => '٧',
+            '8' => '٨',
+            '9' => '٩',
+            '.' => '.',
+            ',' => ','
+        ];
+
+        return strtr((string) $number, $arabic);
+    }
+
+    /**
+     * Calculate discount percentage based on original price and discounted price
+     *
+     * @param float $originalPrice
+     * @param float $discountedPrice
+     * @return string
+     */
+    private function calculateDiscountPercentage($originalPrice, $discountedPrice): string
+    {
+        if (empty($originalPrice) || empty($discountedPrice) || $originalPrice <= 0 || $originalPrice <= $discountedPrice) {
+            return '';
+        }
+
+        $discountPercentage = (($originalPrice - $discountedPrice) / $originalPrice) * 100;
+
+        // Format to 0 decimal places and add percentage sign
+        $formattedPercentage = number_format($discountPercentage, 0);
+
+        return $this->toArabicDigits($formattedPercentage) . '%';
+    }
+
     /**
      * Transform the resource into an array.
      *
@@ -19,10 +67,11 @@ class PropertyResource extends JsonResource
             'title' => $this->title,
             'slug' => $this->slug,
             'description' => $this->description,
-            'price' => $this->price,
+            'price' => $this->toArabicDigits($this->price),
             'currency' => $this->currency,
             'discount' => $this->discount,
-            'discounted_price' => $this->discounted_price,
+            'discount_percentage' => $this->calculateDiscountPercentage($this->price, $this->discounted_price),
+            'discounted_price' => $this->toArabicDigits($this->discounted_price),
             'type' => $this->type,
             'purpose' => $this->purpose,
             'property_type' => $this->property_type,
@@ -31,7 +80,7 @@ class PropertyResource extends JsonResource
             'living_rooms' => $this->living_rooms,
             'kitchens' => $this->kitchens,
             'balconies' => $this->balconies,
-            'area_total' => $this->area_total,
+            'area_total' => $this->toArabicDigits($this->area_total),
             'features' => $this->features,
             'tags' => $this->tags,
             'floor' => $this->floor,
