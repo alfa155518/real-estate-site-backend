@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReviewsController;
+use App\Http\Controllers\SlidersController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Middleware\SecurityHeadersMiddleware;
 use App\Http\Middleware\IsAuthorizedMiddleware;
@@ -50,6 +51,12 @@ Route::middleware(SecurityHeadersMiddleware::class)->group(function () {
         Route::get('/property/{slug}', [PropertiesController::class, 'singleProperty']);
         Route::get('/filter', [PropertiesController::class, 'filterByParams']);
     });
+
+    //Public Sliders
+    Route::prefix('v1/sliders/{id}')->group(function () {
+        Route::get('/', [SlidersController::class, 'index']);
+    });
+
 
     // ============================================
     // Protected Routes (Authentication Required)

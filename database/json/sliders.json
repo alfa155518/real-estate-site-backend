@@ -1,0 +1,56 @@
+{
+    "sliders": [
+      {
+        "name": "First_Slider",
+        "images": [
+          "hero-slides/slide-1.webp",
+          "hero-slides/slide-2.webp",
+          "hero-slides/slide-3.webp",
+          "hero-slides/slide-4.webp",
+          "hero-slides/slide-5.webp",
+          "hero-slides/slide-6.webp",
+          "hero-slides/slide-7.webp",
+          "hero-slides/slide-8.webp"
+        ]
+      },
+      {
+        "name": "Second_Slider",
+        "images": [
+          "realEstateSlides/slide-1.webp",
+          "realEstateSlides/slide-2.webp",
+          "realEstateSlides/slide-3.webp",
+          "realEstateSlides/slide-4.webp",
+          "realEstateSlides/slide-5.webp",
+          "realEstateSlides/slide-6.webp",
+          "realEstateSlides/slide-7.webp",
+          "realEstateSlides/slide-8.webp"
+        ]
+      },
+      {
+        "name": "Third_Slider",
+        "images": [
+          "realEstateSlides/slide-1.webp",
+          "realEstateSlides/slide-2.webp",
+          "realEstateSlides/slide-3.webp",
+          "realEstateSlides/slide-4.webp",
+          "realEstateSlides/slide-5.webp",
+          "realEstateSlides/slide-6.webp",
+          "realEstateSlides/slide-7.webp",
+          "realEstateSlides/slide-8.webp"
+        ]
+      },
+      {
+        "name": "Fourth_Slider",
+        "images": [
+          "realEstateSlides/slide-1.webp",
+          "realEstateSlides/slide-2.webp",
+          "realEstateSlides/slide-3.webp",
+          "realEstateSlides/slide-4.webp",
+          "realEstateSlides/slide-5.webp",
+          "realEstateSlides/slide-6.webp",
+          "realEstateSlides/slide-7.webp",
+          "realEstateSlides/slide-8.webp"
+        ]
+      }
+    ]
+  }
