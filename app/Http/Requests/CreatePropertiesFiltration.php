@@ -18,12 +18,14 @@ class CreatePropertiesFiltration extends FormRequest
     {
         return [
             'search' => 'nullable|string|max:255',
+            'is_featured' => 'nullable|string|in:true,false',
             'type' => 'nullable|string|in:sale,rent,all',
             'location' => 'nullable|string|max:255',
             'minPrice' => 'nullable|numeric|min:0',
             'maxPrice' => 'nullable|numeric|min:0',
             'bedrooms' => 'nullable|integer|min:0',
             'bathrooms' => 'nullable|integer|min:0',
+            'status' => 'nullable|string|in:available',
         ];
     }
 

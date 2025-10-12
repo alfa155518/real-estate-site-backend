@@ -60,6 +60,17 @@ class PropertiesController extends Controller
                 }
             }
 
+            // Filter by is_featured
+            if (!empty($validated['is_featured']) && $validated['is_featured'] !== 'all') {
+                $isFeatured = filter_var($validated['is_featured'], FILTER_VALIDATE_BOOLEAN);
+                $query->where('is_featured', $isFeatured);
+            }
+
+            // Filter by status
+            if (!empty($validated['status']) && $validated['status'] !== 'all') {
+                $query->where('status', $validated['status']);
+            }
+
             // Filter by property type
             if (!empty($validated['type']) && $validated['type'] !== 'all') {
                 $query->where('type', $validated['type']);
