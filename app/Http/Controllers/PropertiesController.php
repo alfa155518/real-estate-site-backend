@@ -109,7 +109,7 @@ class PropertiesController extends Controller
             ], 200);
 
         } catch (\Illuminate\Validation\ValidationException $e) {
-            return $this->error($e->validator->errors()->first());
+            return $this->error($e->validator->errors()->first(), 422);
         } catch (\Exception $e) {
             return $this->error('حدث خطأ ما');
         }

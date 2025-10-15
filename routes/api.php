@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\SlidersController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\UserSupportController;
 use App\Http\Middleware\SecurityHeadersMiddleware;
 use App\Http\Middleware\IsAuthorizedMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -78,6 +79,11 @@ Route::middleware(SecurityHeadersMiddleware::class)->group(function () {
         Route::prefix('v1/reviews')->group(function () {
             Route::post('/', [ReviewsController::class, 'createReview']);
             Route::patch('{id}/toggle-like', [ReviewsController::class, 'toggleLike']);
+        });
+
+        // User Support
+        Route::prefix('v1/support')->group(function () {
+            Route::post('/', [UserSupportController::class, 'store']);
         });
     });
 });
