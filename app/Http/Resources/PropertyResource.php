@@ -7,9 +7,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class PropertyResource extends JsonResource
 {
-
-
-
+    /**
+     * Convert a number to Arabic digits.
+     *
+     * @param mixed $number
+     * @return string
+     */
     private function toArabicDigits($number): string
     {
         if (is_null($number)) {

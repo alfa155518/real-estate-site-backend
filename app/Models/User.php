@@ -57,6 +57,14 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * Get the properties that the user has favorited.
+     */
+    public function favoriteProperties()
+    {
+        return $this->belongsToMany(Properties::class, 'favorite_properties', 'user_id', 'property_id')
+            ->withTimestamps();
+    }
     public static function signupRules()
     {
         return [

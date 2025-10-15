@@ -102,6 +102,15 @@ class Properties extends Model
         return $this->hasMany(PropertyVideos::class, 'property_id');
     }
 
+    /**
+     * Get the users that favorited the property.
+     */
+    public function favoritedBy()
+    {
+        return $this->belongsToMany(User::class, 'favorite_properties', 'property_id', 'user_id')
+            ->withTimestamps();
+    }
+
     public function normalizeArabic($text)
     {
         if (empty($text)) {

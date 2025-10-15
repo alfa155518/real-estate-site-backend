@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FavoritePropertiesController;
 use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReviewsController;
@@ -84,6 +85,12 @@ Route::middleware(SecurityHeadersMiddleware::class)->group(function () {
         // User Support
         Route::prefix('v1/support')->group(function () {
             Route::post('/', [UserSupportController::class, 'store']);
+        });
+
+        // Favorite Properties
+        Route::prefix('v1/favorites')->group(function () {
+            Route::get('/', [FavoritePropertiesController::class, 'getFavorites']);
+            Route::post('{propertyId}/toggle', [FavoritePropertiesController::class, 'toggleFavorite']);
         });
     });
 });
