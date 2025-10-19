@@ -53,12 +53,26 @@ class PropertiesController extends Controller
             $validated = $request->validated();
 
             // filter by search
+            // if (isset($validated['search'])) {
+            //     $searchTerm = trim($validated['search']);
+            //     if (!empty($searchTerm)) {
+            //         $query->whereRaw('LOWER(title) LIKE ?', ['%' . strtolower($searchTerm) . '%']);
+            //     }
+            // }
             if (isset($validated['search'])) {
                 $searchTerm = trim($validated['search']);
+
                 if (!empty($searchTerm)) {
-                    $query->whereRaw('LOWER(title) LIKE ?', ['%' . strtolower($searchTerm) . '%']);
+                    // أولاً نحاول بالبحث باستخدام full-text search
+                    $query->selectRaw("*, MATCH(title, description) AGAINST(? IN NATURAL LANGUAGE MODE) AS relevance", [$searchTerm])
+                        ->whereRaw("MATCH(title, description) AGAINST(? IN NATURAL LANGUAGE MODE)", [$searchTerm])
+                        ->orderByDesc('relevance');
+
                 }
             }
+
+
+
 
             // Filter by is_featured
             if (!empty($validated['is_featured']) && $validated['is_featured'] !== 'all') {
