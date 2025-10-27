@@ -27,7 +27,7 @@ class PropertiesController extends Controller
             $query = Properties::query();
 
             $properties = Cache::rememberForever($cacheKey, function () use ($query, $currentPage) {
-                return $query->with(['location', 'images', 'owner', 'agency'])->paginate(10, ['*'], 'page', $currentPage);
+                return $query->with(['location', 'images', 'videos', 'owner', 'agency'])->paginate(10, ['*'], 'page', $currentPage);
             });
 
             return response()->json([
@@ -52,13 +52,6 @@ class PropertiesController extends Controller
             $query = Properties::query();
             $validated = $request->validated();
 
-            // filter by search
-            // if (isset($validated['search'])) {
-            //     $searchTerm = trim($validated['search']);
-            //     if (!empty($searchTerm)) {
-            //         $query->whereRaw('LOWER(title) LIKE ?', ['%' . strtolower($searchTerm) . '%']);
-            //     }
-            // }
             if (isset($validated['search'])) {
                 $searchTerm = trim($validated['search']);
 
@@ -70,9 +63,6 @@ class PropertiesController extends Controller
 
                 }
             }
-
-
-
 
             // Filter by is_featured
             if (!empty($validated['is_featured']) && $validated['is_featured'] !== 'all') {
@@ -113,7 +103,7 @@ class PropertiesController extends Controller
                 $query->where('bathrooms', $validated['bathrooms']);
             }
 
-            $properties = $query->with(['location', 'images', 'owner', 'agency'])
+            $properties = $query->with(['location', 'images', 'videos', 'owner', 'agency'])
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
 
@@ -146,7 +136,7 @@ class PropertiesController extends Controller
             }
 
             $property = Cache::rememberForever('property_' . $slug, function () use ($slug) {
-                return Properties::where('slug', $slug)->with(['location', 'images', 'owner', 'agency'])->first();
+                return Properties::where('slug', $slug)->with(['location', 'images', 'videos', 'owner', 'agency'])->first();
             });
             return response()->json([
                 'status' => 'success',

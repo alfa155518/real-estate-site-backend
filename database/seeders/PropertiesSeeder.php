@@ -96,7 +96,7 @@ class PropertiesSeeder extends Seeder
             if (isset($property['videos']) && is_array($property['videos'])) {
                 foreach ($property['videos'] as $video) {
                     DB::table('property_videos')->insert([
-                        // 'id' => $video['id'], // Omitted
+                        'id' => $video['id'], // Omitted
                         'property_id' => $video['property_id'],
                         'video_url' => $video['video_url'],
                         'created_at' => Carbon::parse($video['created_at'])->format('Y-m-d H:i:s'),
