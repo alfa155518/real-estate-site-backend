@@ -1,0 +1,15 @@
+{
+    "settings": {
+        "id": 1,
+        "logo": "settings/logo.webp",
+        "location": "القاهرة, مصر",
+        "phone": "+201555187474",
+        "email": "ahmedhassob01555@gmail.com",
+        "opening_hours": "السبت الي الخميس : 8:00 صباحاً - 6:00 مساءً",
+        "facebook": "https://www.facebook.com/",
+        "twitter": "https://twitter.com/",
+        "instagram": "https://www.instagram.com/",
+        "linkedin": "https://www.linkedin.com/",
+        "youtube": "https://www.youtube.com/"
+    }
+}
