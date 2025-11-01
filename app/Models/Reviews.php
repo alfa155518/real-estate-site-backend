@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use App\Http\Resources\ReviewsResource;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * Reviews Model
@@ -39,6 +42,12 @@ class Reviews extends Model
         'likes' => 'array',
     ];
 
+    /** @var int Number of reviews per page */
+    private const PER_PAGE = 8;
+
+    /** @var int Maximum number of cache pages to clear */
+    private const MAX_CACHE_PAGES = 100;
+
     /**
      * Get the user who created the review
      *
@@ -48,6 +57,19 @@ class Reviews extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the property that this review belongs to
+     *
+     * @return BelongsTo
+     */
+    public function property(): BelongsTo
+    {
+        return $this->belongsTo(Properties::class);
+    }
+
+
+
 
     /**
      * Toggle like/unlike for a review
@@ -108,5 +130,64 @@ class Reviews extends Model
         return self::where('user_id', $userId)
             ->where('property_id', $propertyId)
             ->exists();
+    }
+
+    /**
+     * Get cached reviews for a specific page
+     *
+     * @param int $page Page number
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getCachedReviews(int $page)
+    {
+        return Cache::rememberForever(
+            "reviews-{$page}",
+            fn() => Reviews::with('user:id,name')
+                ->orderBy('created_at', 'desc')
+                ->skip(($page - 1) * self::PER_PAGE)
+                ->take(self::PER_PAGE)
+                ->get()
+                ->map(fn($review) => new ReviewsResource($review))
+        );
+    }
+
+
+    /**
+     * Check if there are more pages available
+     *
+     * @param int $page Current page number
+     * @param int $total Total number of reviews
+     * @return bool
+     */
+    public static function hasMorePages(int $page, int $total): bool
+    {
+        return ($page * self::PER_PAGE) < $total;
+    }
+
+
+
+    /**
+     * Get the total number of likes across all reviews
+     *
+     * @return int
+     */
+    public static function getTotalLikesCount(): int
+    {
+        return self::all()
+            ->sum(function ($review) {
+                return count($review->likes ?? []);
+            });
+    }
+
+    /**
+     * Clear all cached review pages
+     *
+     * @return void
+     */
+    public static function clearReviewsCache(): void
+    {
+        for ($page = 1; $page <= self::MAX_CACHE_PAGES; $page++) {
+            Cache::forget("reviews-{$page}");
+        }
     }
 }

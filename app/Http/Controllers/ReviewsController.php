@@ -10,7 +10,6 @@ use App\Traits\ClearCache;
 use App\Traits\HandleResponse;
 use App\Traits\RateLimitable;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -27,11 +26,6 @@ class ReviewsController extends Controller
 {
     use HandleResponse, AuthenticatedUser, RateLimitable, ClearCache;
 
-    /** @var int Number of reviews per page */
-    private const PER_PAGE = 8;
-
-    /** @var int Maximum number of cache pages to clear */
-    private const MAX_CACHE_PAGES = 100;
 
     /**
      * Get all reviews with pagination
@@ -43,9 +37,9 @@ class ReviewsController extends Controller
         try {
 
             $page = request()->get('page', 1);
-            $reviews = $this->getCachedReviews($page);
+            $reviews = Reviews::getCachedReviews($page);
             $total = Reviews::count();
-            $hasMore = $this->hasMorePages($page, $total);
+            $hasMore = Reviews::hasMorePages($page, $total);
 
             return response()->json([
                 'reviews' => $reviews,
@@ -136,42 +130,8 @@ class ReviewsController extends Controller
         if (!$review) {
             return $this->error("التقييم غير موجود", 404);
         }
-
-
         return $this->processToggleLike($review, $user->id);
     }
-
-    /**
-     * Get cached reviews for a specific page
-     *
-     * @param int $page Page number
-     * @return \Illuminate\Support\Collection
-     */
-    private function getCachedReviews(int $page)
-    {
-        return Cache::rememberForever(
-            "reviews-{$page}",
-            fn() => Reviews::with('user:id,name')
-                ->orderBy('created_at', 'desc')
-                ->skip(($page - 1) * self::PER_PAGE)
-                ->take(self::PER_PAGE)
-                ->get()
-                ->map(fn($review) => new ReviewsResource($review))
-        );
-    }
-
-    /**
-     * Check if there are more pages available
-     *
-     * @param int $page Current page number
-     * @param int $total Total number of reviews
-     * @return bool
-     */
-    private function hasMorePages(int $page, int $total): bool
-    {
-        return ($page * self::PER_PAGE) < $total;
-    }
-
     /**
      * Store a new review in the database
      *
@@ -192,7 +152,7 @@ class ReviewsController extends Controller
                 'likes' => [],
             ]);
 
-            $this->clearReviewsCache();
+            Reviews::clearReviewsCache();
             DB::commit();
 
             return $this->success("سعداء بتقديم تقييمك", 201);
@@ -215,7 +175,7 @@ class ReviewsController extends Controller
             DB::beginTransaction();
 
             $result = $review->toggleLike($userId);
-            $this->clearReviewsCache();
+            Reviews::clearReviewsCache();
 
             DB::commit();
 
@@ -235,17 +195,4 @@ class ReviewsController extends Controller
             return $this->error("حدث خطأ في السيرفر");
         }
     }
-
-    /**
-     * Clear all cached review pages
-     *
-     * @return void
-     */
-    private function clearReviewsCache(): void
-    {
-        for ($page = 1; $page <= self::MAX_CACHE_PAGES; $page++) {
-            Cache::forget("reviews-{$page}");
-        }
-    }
-
 }

@@ -17,6 +17,7 @@ class ReviewsResource extends JsonResource
         return [
             'id' => $this->id,
             'property_id' => $this->property_id,
+            'property_title' => $this->property->title,
             'user_name' => $this->user ? $this->user->name : 'مستخدم',
             'rating' => $this->rating,
             'comment' => $this->comment,
