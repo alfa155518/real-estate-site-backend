@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Http\Resources\ReviewsResource;
+use App\Traits\ClearCache;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use Illuminate\Database\Eloquent\Model;
@@ -186,8 +187,6 @@ class Reviews extends Model
      */
     public static function clearReviewsCache(): void
     {
-        for ($page = 1; $page <= self::MAX_CACHE_PAGES; $page++) {
-            Cache::forget("reviews-{$page}");
-        }
+        ClearCache::clearMultipleCachePages("reviews", self::MAX_CACHE_PAGES);
     }
 }

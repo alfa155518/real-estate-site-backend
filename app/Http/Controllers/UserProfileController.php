@@ -7,13 +7,14 @@ use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Traits\HandleResponse;
 use App\Traits\AuthenticatedUser;
+use App\Traits\ClearCache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\UserProfileResource;
 
 class UserProfileController extends Controller
 {
-    use HandleResponse, AuthenticatedUser;
+    use HandleResponse, AuthenticatedUser, ClearCache;
     public function profileInfo(Request $request)
     {
         try {
@@ -54,7 +55,7 @@ class UserProfileController extends Controller
             if (!empty($updates)) {
                 $user->update($updates);
             }
-
+            $this->clearMultipleCachePages("admin_management_users", 200);
             DB::commit();
             return $this->success("تم التحديث بنجاح");
         } catch (\Exception $e) {
@@ -108,7 +109,7 @@ class UserProfileController extends Controller
                 }
                 User::destroy($user->id);
             });
-
+            $this->clearMultipleCachePages("admin_management_users", 200);
             DB::commit();
             return $this->success("تم تسجيل الخروج بنجاح");
         } catch (\Exception $e) {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Traits\HandleResponse;
 use App\Traits\RateLimitable;
+use App\Traits\ClearCache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -14,7 +15,7 @@ use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
-    use HandleResponse, RateLimitable;
+    use HandleResponse, RateLimitable, ClearCache;
 
     /**
      * Login a user with Google.
@@ -79,6 +80,9 @@ class AuthController extends Controller
 
             // Store user data and token in cookies
             $userData = json_encode($userResponse);
+
+            $this->clearMultipleCachePages("admin_management_users", 200);
+
 
             // Create redirect response with cookies
             return redirect()->to(env('FRONTEND_URL'))

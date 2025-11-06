@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Traits\ClearCache;
 use App\Traits\HandleResponse;
 use App\Traits\RateLimitable;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    use HandleResponse, RateLimitable;
+    use HandleResponse, RateLimitable, ClearCache;
 
     /**
      ** Register a new user.
@@ -95,6 +96,7 @@ class RegisterController extends Controller
 
             // Create a new token
             $token = $user->createToken('auth_token')->plainTextToken;
+            $this->clearMultipleCachePages("admin_management_users", 200);
 
             DB::commit();
             return response()->json([

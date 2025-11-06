@@ -16,4 +16,16 @@ trait ClearCache
     {
         Cache::forget($key);
     }
+
+    /**
+     * Clear multiple cached  pages
+     *
+     * @return void
+     */
+    public static function clearMultipleCachePages(string $key, int $maxPages): void
+    {
+        for ($page = 1; $page <= $maxPages; $page++) {
+            Cache::forget("$key-{$page}");
+        }
+    }
 }

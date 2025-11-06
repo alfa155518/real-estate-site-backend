@@ -36,7 +36,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'confirm_password',
-        'role',
         'remember_token',
         'email_verified_at',
         'google_id',
@@ -152,4 +151,28 @@ class User extends Authenticatable
         ];
     }
 
+    public static function adminUpdateUserRules()
+    {
+        return [
+            'role' => 'required|in:user,admin',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:255',
+            'address' => 'nullable|string|max:255',
+        ];
+    }
+
+    public static function adminUpdateUserMessages()
+    {
+        return [
+            'role.required' => 'الدور مطلوب',
+            'role.in' => 'الدور غير صحيح',
+            'name.required' => 'الاسم مطلوب',
+            'name.string' => 'الاسم يجب أن يكون نصا',
+            'name.max' => 'الاسم يجب أن يكون أقل من 255 حرف',
+            'email.required' => 'البريد الالكتروني مطلوب',
+            'email.email' => 'البريد الالكتروني يجب أن يكون صحيح',
+            'email.max' => 'البريد الالكتروني يجب أن يكون أقل من 255 حرف',
+        ];
+    }
 }
