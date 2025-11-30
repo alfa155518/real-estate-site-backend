@@ -63,6 +63,55 @@ class Properties extends Model
     ];
 
     /**
+     * Set JSON attribute with proper encoding
+     * 
+     * @param string $key
+     * @param mixed $value
+     * @return void
+     */
+    protected function setJsonAttribute($key, $value): void
+    {
+        if (is_array($value)) {
+            // Filter out any empty or null values and re-index the array
+            $filtered = array_values(array_filter($value, fn($item) => !empty($item) && is_string($item)));
+            // Use JSON_UNESCAPED_UNICODE to preserve Arabic characters
+            // Save as '[]' for empty arrays instead of null
+            $this->attributes[$key] = json_encode($filtered, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        } else if (is_string($value) && json_decode($value) !== null) {
+            // If it's a JSON string, decode and process it
+            $this->setJsonAttribute($key, json_decode($value, true));
+        } else if (is_null($value)) {
+            // Convert null to empty array
+            $this->attributes[$key] = json_encode([], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        } else {
+            $this->attributes[$key] = $value;
+        }
+    }
+
+    /**
+     * Set the features attribute with proper JSON encoding
+     *
+     * @param  array|string|null  $value
+     * @return void
+     */
+    public function setFeaturesAttribute($value)
+    {
+        $this->setJsonAttribute('features', $value);
+    }
+
+    // /**
+    //  * Set the tags attribute with proper JSON encoding
+    //  *
+    //  * @param  array|string|null  $value
+    //  * @return void
+    //  */
+    public function setTagsAttribute($value)
+    {
+        $this->setJsonAttribute('tags', $value);
+    }
+
+
+    /**
      * Get the owner that owns the property.
      */
     public function owner(): BelongsTo

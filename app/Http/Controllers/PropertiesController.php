@@ -22,7 +22,7 @@ class PropertiesController extends Controller
     public function index(Request $request)
     {
         $currentPage = $request->header('page', 1);
-        $cacheKey = 'properties_page_' . $currentPage;
+        $cacheKey = 'properties_page-' . $currentPage;
         try {
             $query = Properties::query();
 
@@ -56,11 +56,33 @@ class PropertiesController extends Controller
                 $searchTerm = trim($validated['search']);
 
                 if (!empty($searchTerm)) {
-                    // أولاً نحاول بالبحث باستخدام full-text search
-                    $query->selectRaw("*, MATCH(title, description) AGAINST(? IN NATURAL LANGUAGE MODE) AS relevance", [$searchTerm])
-                        ->whereRaw("MATCH(title, description) AGAINST(? IN NATURAL LANGUAGE MODE)", [$searchTerm])
-                        ->orderByDesc('relevance');
+                    // Split search term into individual words
+                    $keywords = array_filter(explode(' ', $searchTerm), function($word) {
+                        return !empty(trim($word));
+                    });
 
+                    $query->where(function($q) use ($keywords) {
+                        foreach ($keywords as $keyword) {
+                            $keyword = trim($keyword);
+                            
+                            // Skip common Arabic words (في, من, إلى, etc.)
+                            if (in_array($keyword, ['في', 'من', 'إلى', 'على', 'عن', 'مع', 'ب', 'ل', 'و'])) {
+                                continue;
+                            }
+
+                            $q->orWhere(function($subQuery) use ($keyword) {
+                                // Search in property fields
+                                $subQuery->where('title', 'LIKE', "%{$keyword}%")
+                                         ->orWhere('description', 'LIKE', "%{$keyword}%")
+                                         ->orWhere('property_type', 'LIKE', "%{$keyword}%")
+                                         // Search in location fields
+                                         ->orWhereHas('location', function($locationQuery) use ($keyword) {
+                                             $locationQuery->where('city', 'LIKE', "%{$keyword}%")
+                                                          ->orWhere('district', 'LIKE', "%{$keyword}%");
+                                         });
+                            });
+                        }
+                    });
                 }
             }
 
@@ -135,7 +157,7 @@ class PropertiesController extends Controller
                 return $this->notFound('العقار غير موجود');
             }
 
-            $property = Cache::rememberForever('property_' . $slug, function () use ($slug) {
+            $property = Cache::rememberForever('property-' . $slug, function () use ($slug) {
                 return Properties::where('slug', $slug)->with(['location', 'images', 'videos', 'owner', 'agency'])->first();
             });
             return response()->json([

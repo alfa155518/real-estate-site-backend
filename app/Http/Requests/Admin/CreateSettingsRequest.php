@@ -5,13 +5,12 @@ namespace App\Http\Requests\Admin;
 use App\Traits\HandleResponse;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class CreateSettingsRequest extends FormRequest
 {
     use HandleResponse;
-    public function rules(Request $request): array
+    public function rules(): array
     {
         return [
             'logo' => [

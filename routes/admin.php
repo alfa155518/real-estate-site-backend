@@ -2,6 +2,7 @@
 
 
 
+use App\Http\Controllers\Admin\PropertiesController;
 use App\Http\Controllers\Admin\ReviewsController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\UsersController;
@@ -28,5 +29,13 @@ Route::middleware(AdminSecurityHeadersMiddleware::class)->group(function () {
         Route::get('/', [UsersController::class, 'index']);
         Route::patch('/{id}', [UsersController::class, 'update']);
         Route::delete('/{id}', [UsersController::class, 'delete']);
+    });
+
+    // Manage Properties
+    Route::prefix('v1/properties')->group(function () {
+        Route::get('/', [PropertiesController::class, 'index']);
+        Route::post('/', [PropertiesController::class, 'store']);
+        Route::delete('/{id}', [PropertiesController::class, 'destroy']);
+        Route::patch('/{id}', [PropertiesController::class, 'update']);
     });
 });
